@@ -2850,8 +2850,8 @@ def normalize_string_quotes(leaf: Leaf) -> None:
         return
 
     elif value[:3] == "'''":
-        orig_quote = "'''"
-        new_quote = '"""'
+        return
+
     elif value[0] == '"':
         orig_quote = '"'
         new_quote = "'"
@@ -2907,7 +2907,7 @@ def normalize_string_quotes(leaf: Leaf) -> None:
     if new_escape_count > orig_escape_count:
         return  # Do not introduce more escaping
 
-    if new_escape_count == orig_escape_count and orig_quote == '"':
+    if new_escape_count == orig_escape_count and orig_quote == "'":
         return  # Prefer double quotes
 
     leaf.value = f"{prefix}{new_quote}{new_body}{new_quote}"
